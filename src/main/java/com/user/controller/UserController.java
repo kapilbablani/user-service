@@ -21,7 +21,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    @ApiOperation("Get the list of all the users")
+    @ApiOperation("Get the list of all the available users")
     public List<User> users() {
         return userService.users();
     }
