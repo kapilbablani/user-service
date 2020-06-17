@@ -23,7 +23,7 @@ public class SwaggerConfig {
     }
 
     private Predicate<String> paths() {
-        return or(regex("/api/v1/users"));
+        return or(regex("/api/v1/.*"));
     }
 
     private ApiInfo apiInfo() {
