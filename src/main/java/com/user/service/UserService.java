@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface UserService {
     List<User> users();
+
+    User userById(Integer userId);
 }

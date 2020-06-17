@@ -17,7 +17,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> users() {
-
         Configuration configuration = new Configuration().configure().addAnnotatedClass(User.class);
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session =  sessionFactory.openSession();
@@ -26,5 +25,14 @@ public class UserServiceImpl implements UserService {
         session.save(user);
         transaction.commit();
         return new ArrayList<>();
+    }
+
+    @Override
+    public User userById(Integer userId) {
+        Configuration configuration = new Configuration().configure().addAnnotatedClass(User.class);
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session =  sessionFactory.openSession();
+        System.out.print(userId);
+        return session.get(User.class, userId);
     }
 }
