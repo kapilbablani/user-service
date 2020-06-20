@@ -1,14 +1,14 @@
 package com.user.controller;
 
-import com.user.dao.User;
+import com.user.exception.UserNotFoundException;
+import com.user.model.CreateUser;
+import com.user.entity.User;
 import com.user.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -23,13 +23,19 @@ public class UserController {
 
     @GetMapping
     @ApiOperation("Get the list of all the available users")
-    public List<User> users() {
-        return userService.users();
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     @GetMapping(value="{userId}")
     @ApiOperation("Get specific user by id")
-    public User userById(@PathVariable("userId") Integer userId) {
-        return userService.userById(userId);
+    public User getUserById(@PathVariable("userId") Integer userId) {
+        return userService.getUserById(userId);
+    }
+
+    @PostMapping("user")
+    @ApiOperation("Create a user into the system")
+    public String createUser(@RequestBody CreateUser user) {
+        return userService.createUser(user);
     }
 }

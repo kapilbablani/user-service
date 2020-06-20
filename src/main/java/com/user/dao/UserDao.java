@@ -1,11 +1,11 @@
-package com.user.service;
+package com.user.dao;
 
-import com.user.model.CreateUser;
 import com.user.entity.User;
+import com.user.model.CreateUser;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserDao {
     List<User> getAllUsers();
 
     User getUserById(Integer userId);
