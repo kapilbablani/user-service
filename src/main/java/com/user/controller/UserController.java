@@ -1,13 +1,11 @@
 package com.user.controller;
 
-import com.user.exception.UserNotFoundException;
-import com.user.model.CreateUser;
 import com.user.entity.User;
+import com.user.model.CreateUser;
 import com.user.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -35,7 +33,7 @@ public class UserController {
 
     @PostMapping("user")
     @ApiOperation("Create a user into the system")
-    public String createUser(@RequestBody CreateUser user) {
+    public String createUser(@RequestBody(required = true) CreateUser user) {
         return userService.createUser(user);
     }
 }
