@@ -1,15 +1,11 @@
 package com.user.controller;
 
-import com.user.exception.UserNotFoundException;
-import com.user.model.CreateUser;
 import com.user.entity.User;
+import com.user.model.CreateUser;
 import com.user.service.UserService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
