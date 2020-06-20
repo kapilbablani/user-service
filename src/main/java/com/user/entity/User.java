@@ -1,11 +1,8 @@
-package com.user.dao;
+package com.user.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter
@@ -18,6 +15,7 @@ import java.util.Date;
 public class User {
     @Id
     @Column(name="user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name="first_name")
     private String firstName;
