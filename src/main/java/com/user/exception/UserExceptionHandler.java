@@ -26,6 +26,7 @@ public class UserExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({Exception.class})
     public ResponseEntity<ResponseError> handleGenericException(Exception e) {
+        e.printStackTrace();
         return error(new ResponseError(HttpStatus.FORBIDDEN ,"Something went wrong. Please contact System Administrator"));
     }
 

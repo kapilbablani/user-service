@@ -25,9 +25,9 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping(value="{userId}")
+    @GetMapping(value="{user-id}")
     @ApiOperation("Get specific user by id")
-    public User getUserById(@PathVariable("userId") Integer userId) {
+    public User getUserById(@PathVariable("user-id") Integer userId) {
         return userService.getUserById(userId);
     }
 
