@@ -21,8 +21,11 @@ public class User {
     private String firstName;
     @Column(name="last_name")
     private String lastName;
+    private Address address;
     private String email;
     private String mobile;
     private Date dob;
+    @OneToOne
+    private Role role;
 
 }

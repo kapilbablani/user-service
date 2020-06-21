@@ -1,6 +1,7 @@
 package com.user.dao.impl;
 
 import com.user.dao.UserDao;
+import com.user.entity.Role;
 import com.user.entity.User;
 import com.user.model.CreateUser;
 import org.hibernate.Session;
@@ -25,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(Integer userId) {
-        Configuration configuration = new Configuration().configure().addAnnotatedClass(User.class);
+        Configuration configuration = new Configuration().configure().addAnnotatedClass(User.class).addAnnotatedClass(Role.class);
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session =  sessionFactory.openSession();
         return session.get(User.class, userId);
@@ -33,12 +34,15 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public String createUser(CreateUser user) {
-        Configuration configuration = new Configuration().configure().addAnnotatedClass(User.class);
+        Configuration configuration = new Configuration().configure().addAnnotatedClass(User.class).addAnnotatedClass(Role.class);
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session =  sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         User userToCreate = new User();
-        BeanUtils.copyProperties(userToCreate, user);
+        userToCreate.setFirstName(user.getFirstName());
+        Role role = new Role();
+        role.setRoleId(user.getRoleId());
+        userToCreate.setRole(role);
         session.save(userToCreate);
         transaction.commit();
         return "User created successfully !!";
