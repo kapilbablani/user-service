@@ -1,7 +1,9 @@
 
-\
-java:S1128"@Remove this unused import 'org.omg.CORBA.DynAnyPackage.Invalid'.(Õëû8“âÈ‘­.
-L
-java:S1068"*Remove this unused "logger" private field.(ÕõÒÀûÿÿÿÿ8ù¿ƒ‘­.
 f
 java:S2387"D"logger" is the name of a field in "ResponseEntityExceptionHandler".(ÕõÒÀûÿÿÿÿ8ÒÒ­.
+L
+java:S1068"*Remove this unused "logger" private field.(ÕõÒÀûÿÿÿÿ8ù¿ƒ‘­.
+\
+java:S1128"@Remove this unused import 'org.omg.CORBA.DynAnyPackage.Invalid'.(Õëû8“âÈ‘­.
+E
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ş¤î¸­.
