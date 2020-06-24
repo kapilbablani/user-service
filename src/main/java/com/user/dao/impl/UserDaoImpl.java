@@ -7,8 +7,7 @@ import com.user.model.CreateUser;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,35 +15,41 @@ import java.util.List;
 
 @Service
 public class UserDaoImpl implements UserDao {
+
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @Override
     public List<User> getAllUsers() {
-        Configuration configuration = new Configuration().configure().addAnnotatedClass(User.class);
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        Session session =  sessionFactory.openSession();
         return new ArrayList<>();
     }
 
     @Override
     public User getUserById(Integer userId) {
-        Configuration configuration = new Configuration().configure().addAnnotatedClass(User.class).addAnnotatedClass(Role.class);
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session =  sessionFactory.openSession();
         return session.get(User.class, userId);
     }
 
     @Override
     public String createUser(CreateUser user) {
-        Configuration configuration = new Configuration().configure().addAnnotatedClass(User.class).addAnnotatedClass(Role.class);
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session =  sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        User userToCreate = new User();
-        userToCreate.setFirstName(user.getFirstName());
-        Role role = new Role();
-        role.setRoleId(user.getRoleId());
-        userToCreate.setRole(role);
-        session.save(userToCreate);
+        session.save(createUserToUser(user));
         transaction.commit();
         return "User created successfully !!";
+    }
+
+    private User createUserToUser(CreateUser createUser) {
+        User user = new User();
+        user.setFirstName(createUser.getFirstName());
+        user.setLastName(createUser.getLastName());
+        user.setEmail(createUser.getEmail());
+        user.setDob(createUser.getDob());
+        user.setMobile(createUser.getMobile());
+        Role role = new Role();
+        role.setRoleId(createUser.getRoleId());
+        user.setRole(role);
+        user.setAddress(createUser.getAddress());
+        return user;
     }
 }
