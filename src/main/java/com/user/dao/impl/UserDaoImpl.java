@@ -10,7 +10,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import org.hibernate.query.Query;
 import java.util.List;
 
 @Service
@@ -21,7 +21,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        return new ArrayList<>();
+        Session session =  sessionFactory.openSession();
+        Query<User> query = session.createQuery("from User");
+        query.setCacheable(true);
+        return query.getResultList();
     }
 
     @Override

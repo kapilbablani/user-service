@@ -13,5 +13,12 @@
         <!-- DB schema will be updated if needed -->
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
+
+        <!-- Hibernate Second level Caching through ehCache -->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.internal.EhcacheRegionFactory</property>
+
+        <!-- Hibernate second level cache for HQL/Query -->
+        <property name="hibernate.cache.use_query_cache">true</property>
     </session-factory>
 </hibernate-configuration>

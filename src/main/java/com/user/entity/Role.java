@@ -1,6 +1,10 @@
 package com.user.entity;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
 
@@ -8,9 +12,9 @@ import javax.persistence.*;
 @Table(name="role")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @ToString
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

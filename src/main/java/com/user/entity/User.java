@@ -1,6 +1,10 @@
 package com.user.entity;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,8 +14,8 @@ import java.util.Date;
 @Entity
 @Table(name="user")
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class User {
     @Id
     @Column(name="user_id")
@@ -25,7 +29,7 @@ public class User {
     private String email;
     private String mobile;
     private Date dob;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private Role role;
 
 }

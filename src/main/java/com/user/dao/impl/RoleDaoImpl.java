@@ -19,11 +19,15 @@ public class RoleDaoImpl implements RoleDao {
     public String createRole(CreateRole role) {
         Session session =  sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        Role roleToCreate = new Role();
-        roleToCreate.setRoleName(role.getRoleName());
-        roleToCreate.setRoleDescription(role.getRoleDescription());
-        session.save(roleToCreate);
+        session.save(convertCreateRoleToRole(role));
         transaction.commit();
         return "Role created successfully !!";
+    }
+
+    private Role convertCreateRoleToRole(CreateRole createRole) {
+        Role role = new Role();
+        role.setRoleName(createRole.getRoleName());
+        role.setRoleDescription(createRole.getRoleDescription());
+        return role;
     }
 }
