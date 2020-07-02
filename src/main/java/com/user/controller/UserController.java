@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/users")
-@Api(value = "Perform User ", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(value = "Perform Users operations", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
     @Resource
