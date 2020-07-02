@@ -18,7 +18,7 @@ public class RoleController {
     private RoleService roleService;
 
     @PostMapping("role")
-    @ApiOperation("Create a role into the system")
+    @ApiOperation("Create a role into the system.")
     public String createRole(@RequestBody(required = true) CreateRole role) {
         return roleService.createRole(role);
     }
